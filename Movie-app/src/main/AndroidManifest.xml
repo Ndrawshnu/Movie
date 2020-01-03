@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.MyMovie">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+    <permission
+        android:name="com.example.MyMovie.READ_DATABASE"
+        android:protectionLevel="normal" />
+    <permission
+        android:name="com.example.MyMovie.WRITE_DATABASE"
+        android:protectionLevel="normal" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/cinema"
+        android:label="IND MOVIE"
+        android:roundIcon="@drawable/cinema"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name="com.example.MyMovie.MainActivity"></activity>
+        <activity
+            android:name="com.example.MyMovie.Main2Activity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:label="IND MOVIE"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.example.MyMovie.DetailActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.MyMovie.DetailActivity" />
+        </activity>
+
+
+
+
+        <receiver
+            android:name="com.example.MyMovie.service.DailyReminderMovie"
+            android:enabled="true"
+            android:exported="true" />
+
+        <service
+            android:name="com.example.MyMovie.stackWidget.StackWidgetService"
+            android:permission="android.permission.BIND_REMOTEVIEWS" />
+
+        <activity android:name="com.example.MyMovie.SettingActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.MyMovie.SettingActivity" />
+        </activity>
+
+        <service
+            android:name="com.example.MyMovie.service.UpComingReminderMovie"
+            android:exported="true"
+            android:permission="com.google.android.gms.permission.BIND_NETWORK_TASK_SERVICE">
+            <intent-filter>
+                <action android:name="com.google.android.gms.gcm.ACTION_TASK_READY" />
+            </intent-filter>
+        </service>
+    </application>
+
+</manifest>
